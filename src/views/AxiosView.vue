@@ -24,6 +24,7 @@
 </template>
 
 <script>
+    import axios from "axios"; 
 
     export default {
 
@@ -34,7 +35,24 @@
         }),
 
         methods : {
+            //login(){
+            //    axios.post('https://api.devcury.kr/auth/user',{
+            //        id : this.id,
+            //        pwd : this.pwd
+            //    }).then
+            //    ;
+            //}
+
             callData(){
+                axios.get(`https://dapi.kakao.com/v2/search/web?query=${this.search}`,{
+                    header : {
+                        Authorization: `KakaoAK ${process.env.VUE_APP_KAKAO_KEY}`
+                    }
+                }).then(response => {
+                    console.log(response);
+                }).catch(error => {
+                    console.error(error);
+                })
                 
             },
 
